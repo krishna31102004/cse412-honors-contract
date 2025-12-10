@@ -57,9 +57,8 @@ CREATE INDEX idx_order_items_product_id ON order_items(product_id);
 -- Reporting view
 CREATE OR REPLACE VIEW daily_sales_totals AS
 SELECT
-    DATE_TRUNC('day', o.order_date) AS day,
+    DATE_TRUNC('day', o.order_date) AS sale_day,
     SUM(oi.quantity * oi.unit_price) AS total_sales
 FROM orders o
 JOIN order_items oi ON oi.order_id = o.id
-GROUP BY DATE_TRUNC('day', o.order_date)
-ORDER BY day;
+GROUP BY DATE_TRUNC('day', o.order_date);

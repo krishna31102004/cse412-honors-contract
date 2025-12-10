@@ -17,7 +17,11 @@ export default function Analytics() {
     setLoading(true);
     setError('');
     try {
-      const resp = await apiGet('/analytics/daily-sales', filters);
+      const params = {
+        start_date: filters.start_date || undefined,
+        end_date: filters.end_date || undefined,
+      };
+      const resp = await apiGet('/analytics/daily-sales', params);
       const normalized = (resp.items || []).map((row) => ({
         ...row,
         total_sales: Number(row.total_sales),

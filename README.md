@@ -7,15 +7,15 @@ Prerequisites
 - Node.js 18+
 - PostgreSQL running locally
 
-1. Initialize the database
---------------------------
+1. SQL Setup
+------------
 ```bash
 psql postgres -c "CREATE DATABASE orders;"
 psql orders -f sql/schema.sql
 ```
 
-2. Generate and load data
--------------------------
+2. Data generation and load
+---------------------------
 ```bash
 python3 -m venv .venv-data
 source .venv-data/bin/activate

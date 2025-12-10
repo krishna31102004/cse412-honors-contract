@@ -198,10 +198,10 @@ def get_daily_sales(
     clauses: list[str] = []
     params: dict[str, object] = {}
     if start_date is not None:
-        clauses.append("day::date >= :start_date")
+        clauses.append("sale_day::date >= :start_date")
         params["start_date"] = start_date
     if end_date is not None:
-        clauses.append("day::date <= :end_date")
+        clauses.append("sale_day::date <= :end_date")
         params["end_date"] = end_date
 
     where_sql = ""
@@ -209,7 +209,7 @@ def get_daily_sales(
         where_sql = " WHERE " + " AND ".join(clauses)
 
     sql = text(
-        "SELECT day::date AS sale_day, total_sales "
+        "SELECT sale_day::date AS sale_day, total_sales "
         "FROM daily_sales_totals"
         + where_sql
         + " ORDER BY sale_day"

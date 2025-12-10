@@ -1,8 +1,8 @@
 -- Daily revenue for January 2024 using the reporting view
-SELECT day::date AS day, total_sales
+SELECT sale_day, total_sales
 FROM daily_sales_totals
-WHERE day >= DATE '2024-01-01' AND day < DATE '2024-02-01'
-ORDER BY day;
+WHERE sale_day >= DATE '2024-01-01' AND sale_day < DATE '2024-02-01'
+ORDER BY sale_day;
 
 -- Top 10 products by gross revenue
 SELECT p.id, p.name, SUM(oi.quantity * oi.unit_price) AS product_revenue
